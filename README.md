@@ -2,7 +2,7 @@
 
 This project was created as a hands-on way to learn about ASP.NET.
 
-GameStore is a full-stack web application for managing a collection of video games and genres. Built as a learning project with ASP.NET Core and React, it demonstrates modern web development practices, including RESTful API design, Entity Framework Core, and a responsive frontend with Tailwind CSS.
+GameStore is a full-stack web application for managing a collection of video games. Built as a learning project with ASP.NET Core, it demonstrates modern web development practices, including RESTful API design, Entity Framework Core.
 
 ---
 
@@ -88,7 +88,6 @@ The `frontend` folder contains a modern React application built with Vite and st
 - RESTful API design
 - Modern, responsive frontend
 - Database migrations and seeding
-- Clean code structure and separation of concerns
 
 ---
 
@@ -125,7 +124,6 @@ The `frontend` folder contains a modern React application built with Vite and st
 ## Learning Outcomes
 
 - Hands-on experience with ASP.NET Core Web API and Entity Framework Core
-- Built a modern React frontend with Vite and Tailwind CSS
 - Implemented full CRUD operations and API integration
 - Learned about project structure, code organization, and best practices in full-stack development
 
