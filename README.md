@@ -6,19 +6,6 @@ GameStore is a full-stack web application for managing a collection of video gam
 
 ---
 
-## Table of Contents
-
-- [Project Overview](#project-overview)
-- [Backend: GameStore.API](#backend-gamestoreapi)
-- [Frontend: React App](#frontend-react-app)
-- [Database](#database)
-- [Features](#features)
-- [How to Run](#how-to-run)
-- [Technologies Used](#technologies-used)
-- [Learning Outcomes](#learning-outcomes)
-
----
-
 ## Project Overview
 
 GameStore consists of:
