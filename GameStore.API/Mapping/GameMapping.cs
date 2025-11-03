@@ -13,7 +13,9 @@ public static class GameMapping
             Name = game.Name,
             GenreId = game.GenreId,
             Price = game.Price,
-            ReleaseDate = game.ReleaseDate
+            // If frontend omits the release date (null), default to today's date
+            ReleaseDate = game.ReleaseDate ?? DateOnly.FromDateTime(DateTime.UtcNow),
+            ImageUrl = game.ImageUrl
         };
     }
 
@@ -25,7 +27,8 @@ public static class GameMapping
             Name = game.Name,
             GenreId = game.GenreId,
             Price = game.Price,
-            ReleaseDate = game.ReleaseDate
+            ReleaseDate = game.ReleaseDate ?? DateOnly.FromDateTime(DateTime.UtcNow),
+            ImageUrl = game.ImageUrl
         };
     }
 
@@ -37,7 +40,8 @@ public static class GameMapping
             game.GenreId,
             game.Genre != null ? game.Genre.Name : string.Empty,
             game.Price,
-            game.ReleaseDate);
+            game.ReleaseDate,
+            game.ImageUrl);
     }
 
     public static GameDetailsDto ToGameDetailsDto(this Game game)
@@ -47,7 +51,8 @@ public static class GameMapping
             game.Name,
             game.GenreId,
             game.Price,
-            game.ReleaseDate);
+            game.ReleaseDate,
+            game.ImageUrl);
     }
 
 }

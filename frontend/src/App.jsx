@@ -2,7 +2,6 @@ import { useState } from "react";
 import GameList from "./components/GameList";
 import GameForm from "./components/GameForm";
 import GenreList from "./components/GenreList";
-import Navigation from "./components/Navigation";
 
 function App() {
   // Only one page: games
@@ -26,26 +25,27 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-950 text-gray-100">
-      <Navigation />
-      <div className="max-w-3xl mx-auto mt-8">
+    <div className="min-h-screen text-gray-100">
+      <div className="max-w-[1600px] mx-auto mt-8 px-4">
         <main className="flex flex-col items-center min-h-[80vh]">
-          <div className="w-full max-w-3xl">
-            <div className="mb-6">
-              <h1 className="text-3xl font-extrabold text-gray-100 mb-2">
-                Game Store
+          <div className="w-full">
+            <div className="mb-8 text-center">
+              <h1 className="text-6xl font-extrabold text-white mb-4 drop-shadow-2xl tracking-tight">
+                🎮 Game Store
               </h1>
-              <p className="text-gray-400">
-                Manage your games collection below.
+              <p className="text-xl text-gray-100 drop-shadow-lg font-medium">
+                Manage your epic games collection
               </p>
             </div>
-            <div className="bg-gray-900 rounded-xl shadow p-6">
+            <div className="bg-gray-900 rounded-2xl shadow-2xl p-8 backdrop-blur-lg border border-white/10">
               {showGameForm ? (
-                <GameForm
-                  game={editingGame}
-                  onSuccess={handleGameFormSuccess}
-                  onCancel={() => setShowGameForm(false)}
-                />
+                <div className="max-w-2xl mx-auto">
+                  <GameForm
+                    game={editingGame}
+                    onSuccess={handleGameFormSuccess}
+                    onCancel={() => setShowGameForm(false)}
+                  />
+                </div>
               ) : (
                 <GameList
                   key={refreshKey}

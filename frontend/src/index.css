@@ -1,3 +1,98 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Gaming Background with Image */
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-image: url('/gamewall.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Dark overlay to make text readable */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Subtle vignette effect */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.5) 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Make sure content is above background */
+#root {
+  position: relative;
+  z-index: 10;
+}
+
+/* Glass morphism effect for cards - matches gaming theme */
+.bg-gray-900 {
+  background: rgba(0, 0, 0, 0.75) !important;
+  backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.bg-gray-950 {
+  background: transparent !important;
+}
+
+/* Input fields styling to match theme */
+input, select, textarea {
+  background: rgba(0, 0, 0, 0.6) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(8px);
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: rgba(139, 92, 246, 0.5) !important;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1) !important;
+}
+
+/* Select dropdown options styling */
+select option {
+  background-color: #0a0a0a !important;
+  color: #e5e7eb !important;
+  padding: 8px;
+}
+
+select option:hover,
+select option:focus,
+select option:checked {
+  background-color: #1e40af !important;
+  color: white !important;
+}
+
+/* Button enhancements */
+button {
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}

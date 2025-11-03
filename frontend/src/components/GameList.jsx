@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { fetchGames, deleteGame, fetchGenres } from "../api";
 
 export default function GameList({ onEdit, onCreate }) {
@@ -34,84 +34,107 @@ export default function GameList({ onEdit, onCreate }) {
 
   if (loading)
     return (
-      <div className="text-center py-8 text-lg text-gray-400 dark:text-gray-300">
+      <div className="text-center py-8 text-lg text-gray-300">
         Loading games...
       </div>
     );
 
   return (
-    <div className="">
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold text-gray-100">Games</h2>
+    <div>
+      {/* Add Game Button at Top */}
+      <div className="flex justify-end mb-6">
         <button
-          className="bg-blue-700 hover:bg-blue-800 text-white px-5 py-2 rounded-lg shadow transition font-semibold"
           onClick={onCreate}
+          className="border-2 border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white px-6 py-3 rounded-lg shadow-lg transition font-semibold transform hover:scale-105"
         >
-          + Add Game
+          + Add New Game
         </button>
       </div>
-      <div className="overflow-x-auto rounded-lg shadow">
-        <table className="min-w-full bg-gray-900 text-sm text-gray-200">
-          <thead className="bg-gray-800 border-b border-gray-700">
-            <tr>
-              <th className="py-3 px-4 text-left font-semibold text-gray-300">
-                Title
-              </th>
-              <th className="py-3 px-4 text-left font-semibold text-gray-300">
-                Genre
-              </th>
-              <th className="py-3 px-4 text-left font-semibold text-gray-300">
-                Price
-              </th>
-              <th className="py-3 px-4 text-left font-semibold text-gray-300">
-                Release Date
-              </th>
-              <th className="py-3 px-4 text-left font-semibold text-gray-300">
-                Actions
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {games.length === 0 ? (
-              <tr>
-                <td colSpan={5} className="text-center py-8 text-gray-500">
-                  No games found.
-                </td>
-              </tr>
-            ) : (
-              games.map((game) => (
-                <tr
-                  key={game.id}
-                  className="border-b border-gray-800 hover:bg-gray-800 transition"
-                >
-                  <td className="py-3 px-4">{game.name}</td>
-                  <td className="py-3 px-4">{getGenreName(game.genreId)}</td>
-                  <td className="py-3 px-4">${game.price}</td>
-                  <td className="py-3 px-4">
-                    {game.releaseDate
-                      ? new Date(game.releaseDate).toLocaleDateString()
-                      : ""}
-                  </td>
-                  <td className="py-3 px-4 flex gap-2">
-                    <button
-                      className="bg-yellow-900 hover:bg-yellow-800 text-yellow-200 px-3 py-1 rounded transition font-medium"
-                      onClick={() => onEdit(game)}
-                    >
-                      Edit
-                    </button>
-                    <button
-                      className="bg-red-900 hover:bg-red-800 text-red-200 px-3 py-1 rounded transition font-medium"
-                      onClick={() => handleDelete(game.id)}
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              ))
-            )}
-          </tbody>
-        </table>
-      </div>
+
+      {games.length === 0 ? (
+        <div className="text-center py-16 text-gray-300 bg-gray-800 bg-opacity-50 rounded-xl backdrop-blur-sm">
+          <p className="text-xl mb-4">No games found</p>
+          <button
+            onClick={onCreate}
+            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition"
+          >
+            Add Your First Game
+          </button>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {games.map((game) => (
+            <div
+              key={game.id}
+              className="bg-gray-800 bg-opacity-80 backdrop-blur-md rounded-xl overflow-hidden shadow-2xl border border-gray-700 hover:border-purple-500 transition-all duration-300 transform hover:scale-105 hover:shadow-purple-500/50"
+            >
+              <div className="relative h-48 bg-gray-900 overflow-hidden">
+                {game.imageUrl ? (
+                  <img
+                    src={game.imageUrl}
+                    alt={game.name}
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      // Use a simple gradient fallback instead of external placeholder
+                      e.target.style.display = "none";
+                      e.target.parentElement.innerHTML = `
+                        <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-800 to-gray-900">
+                          <span class="text-6xl opacity-30">🎮</span>
+                        </div>
+                      `;
+                    }}
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-800 to-gray-900">
+                    <span className="text-6xl opacity-30">🎮</span>
+                  </div>
+                )}
+                <div className="absolute top-3 right-3 bg-green-600 text-white px-3 py-1 rounded-full font-bold shadow-lg">
+                  LKR {game.price.toLocaleString()}
+                </div>
+              </div>
+
+              <div className="p-5">
+                <h3 className="text-xl font-bold text-white mb-2 truncate">
+                  {game.name}
+                </h3>
+
+                <div className="space-y-2 mb-4">
+                  <div className="flex items-center text-sm text-gray-300">
+                    <span className="font-semibold text-purple-400">
+                      {getGenreName(game.genreId)}
+                    </span>
+                  </div>
+
+                  <div className="flex items-center text-sm text-gray-300">
+                    <span className="text-gray-400">Released:</span>
+                    <span className="ml-1">
+                      {game.releaseDate
+                        ? new Date(game.releaseDate).toLocaleDateString()
+                        : "Not set"}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex gap-2">
+                  <button
+                    className="flex-1 border-2 border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white px-4 py-2 rounded-lg transition font-medium"
+                    onClick={() => onEdit(game)}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className="flex-1 border-2 border-red-500 text-red-400 hover:bg-red-500 hover:text-white px-4 py-2 rounded-lg transition font-medium"
+                    onClick={() => handleDelete(game.id)}
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

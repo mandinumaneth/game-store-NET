@@ -6,4 +6,5 @@ public record class GameSummaryDto(
     int GenreId,
     string Genre,
     decimal Price,
-    DateOnly ReleaseDate);
+    DateOnly ReleaseDate,
+    string? ImageUrl);
