@@ -267,25 +267,6 @@ game-store-NET/
 
 ---
 
-## Screenshots
-
-### Game Collection View
-
-- 4-column responsive card layout
-- Game images with fallback
-- LKR price display
-- Released date information
-- Edit and Delete actions
-
-### Add/Edit Game Form
-
-- Title, Genre, Price, Release Date inputs
-- Image upload with preview
-- Change or remove image options
-- Dark theme with proper contrast
-
----
-
 ## Future Enhancements
 
 - User authentication and authorization
@@ -297,12 +278,6 @@ game-store-NET/
 - Export data to CSV/Excel
 - Image compression and optimization
 - Cloud storage integration (Azure Blob, AWS S3)
-
----
-
-## License
-
-This is a learning project and is free to use for educational purposes.
 
 ---
 
